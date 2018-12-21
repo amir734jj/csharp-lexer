@@ -1,0 +1,12 @@
+
+\.idea/
+
+Core/bin/
+
+Core/obj/
+
+Core\.Tests/bin/
+
+Core\.Tests/obj/
+
+cst-lexer\.sln\.DotSettings\.user
