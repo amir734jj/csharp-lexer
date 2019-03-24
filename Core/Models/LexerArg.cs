@@ -18,10 +18,15 @@ namespace Lexer.core.Models
         }
 
         public string Buffer { get; }
+        
         public char Next { get; }
+        
         public T Previous { get; }
+        
         public Action Stop { get; }
+        
         public Action<string, T> Yield { get; }
+        
         public Action<string> Dispose { get; }
         
         public Action<string> SetBuffer { get; }
