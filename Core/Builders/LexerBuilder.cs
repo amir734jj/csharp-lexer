@@ -13,7 +13,7 @@ namespace Lexer.core.Builders
             new LexerBuilder<TSource>();
     }
 
-    public class LexerBuilder<T> : ILexerBuilder<T> where T : class
+    internal class LexerBuilder<T> : ILexerBuilder<T> where T : class
     {
         public ILexerBuilderAmbiguityResolver<T> Init()
         {
@@ -21,7 +21,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderAmbiguityResolver<T> : ILexerBuilderAmbiguityResolver<T> where T : class
+    internal class LexerBuilderAmbiguityResolver<T> : ILexerBuilderAmbiguityResolver<T> where T : class
     {
         public ILexerBuilderWithNilNode<T> WithAmbiguityResolverEnum(AmbiguityResolverEnum ambiguityResolver)
         {
@@ -29,7 +29,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderWithNilNode<T> : ILexerBuilderWithNilNode<T> where T : class
+    internal class LexerBuilderWithNilNode<T> : ILexerBuilderWithNilNode<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 
@@ -44,7 +44,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderHandlers<T> : ILexerBuilderHandlers<T> where T : class
+    internal class LexerBuilderHandlers<T> : ILexerBuilderHandlers<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 
@@ -75,7 +75,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderFinalize<T> : ILexerBuilderFinalize<T> where T : class
+    internal class LexerBuilderFinalize<T> : ILexerBuilderFinalize<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 

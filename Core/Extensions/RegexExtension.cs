@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Lexer.core.Extensions
 {
-    public static class RegexExtension
+    internal static class RegexExtension
     {
         public static bool FullMatch(this Regex regex, string token)
         {

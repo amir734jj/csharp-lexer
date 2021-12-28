@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using Lexer.core.Builders;
 using Lexer.core.Enums;
@@ -26,7 +28,7 @@ namespace Lexer.Core.Tests
                 .Build();
 
             // Act
-            var nodes = lexer.Process("Hello World".ToMemoryStream());
+            var nodes = lexer.Process(new MemoryStream(Encoding.Default.GetBytes("Hello World")));
 
             // Assert
             Assert.Equal(3, nodes.Count());
@@ -47,7 +49,7 @@ namespace Lexer.Core.Tests
                 .Build();
 
             // Act
-            var nodes = lexer.Process("Hello World".ToMemoryStream());
+            var nodes = lexer.Process(new MemoryStream(Encoding.Default.GetBytes("Hello World")));
 
             // Assert
             Assert.Equal(3, nodes.Count());
@@ -68,7 +70,7 @@ namespace Lexer.Core.Tests
                 .Build();
 
             // Act
-            var nodes = lexer.Process("Hello World".ToMemoryStream());
+            var nodes = lexer.Process(new MemoryStream(Encoding.Default.GetBytes("Hello World")));
 
             // Assert
             Assert.Equal(3, nodes.Count());
@@ -91,7 +93,7 @@ namespace Lexer.Core.Tests
                 .Build();
 
             // Act
-            var nodes = lexer.Process("12 * 23 + 34 / 45 - 56 Error 12 * 23 + 34 / 45 - 56".ToMemoryStream());
+            var nodes = lexer.Process(new MemoryStream(Encoding.Default.GetBytes("12 * 23 + 34 / 45 - 56 Error 12 * 23 + 34 / 45 - 56")));
 
             // Assert
             Assert.Equal(18, nodes.Count());

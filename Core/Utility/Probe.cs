@@ -3,7 +3,7 @@ using Lexer.Core.Interfaces.Probe;
 
 namespace Lexer.core.Utility
 {
-    public class Probe<T> : IProbe<T>
+    internal class Probe<T> : IProbe<T>
     {        
         private readonly Action<T> _callback;
         

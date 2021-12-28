@@ -2,7 +2,7 @@ using System;
 
 namespace Lexer.Core.Interfaces.Probe
 {
-    public interface IProbe<T>
+    internal interface IProbe<T>
     {
         T Value { get; }
         

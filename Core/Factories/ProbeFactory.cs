@@ -4,12 +4,12 @@ using Lexer.core.Utility;
 
 namespace Lexer.core.Factories
 {
-    public static class ProbeFactory
+    internal static class ProbeFactory
     {
         public static IProbeFactory<T> New<T>() => new ProbeFactory<T>();
     }
 
-    public class ProbeFactory<T> : IProbeFactory<T>
+    internal class ProbeFactory<T> : IProbeFactory<T>
     {
         private Action<IProbe<T>> _action = _ => { };
 
