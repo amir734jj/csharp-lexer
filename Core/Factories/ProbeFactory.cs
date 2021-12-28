@@ -1,6 +1,6 @@
 using System;
-using Lexer.core.Utility;
 using Lexer.Core.Interfaces.Probe;
+using Lexer.core.Utility;
 
 namespace Lexer.core.Factories
 {
@@ -17,8 +17,18 @@ namespace Lexer.core.Factories
 
         private IProbe<T> _instance;
 
-        public IProbe<T> Instance =>
-            LambdaHelper.YieldAndAlso(_instance, x => x == null, () => throw new NotImplementedException());
+        public IProbe<T> Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    throw new ArgumentException();
+                }
+
+                return _instance;
+            }
+        }
 
         public IProbeFactory<T> WithAction(Action<IProbe<T>> action)
         {

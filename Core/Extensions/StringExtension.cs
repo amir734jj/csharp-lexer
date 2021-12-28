@@ -12,7 +12,7 @@ namespace Lexer.core.Extensions
         
         public static MemoryStream ToMemoryStream(this string value)
         {
-            return new MemoryStream(Encoding.UTF8.GetBytes(value ?? string.Empty));
+            return new MemoryStream(Encoding.Default.GetBytes(value ?? string.Empty));
         }
     }
 }

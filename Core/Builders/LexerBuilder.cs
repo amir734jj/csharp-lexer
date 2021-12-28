@@ -9,11 +9,11 @@ namespace Lexer.core.Builders
 {
     public static class LexerBuilder
     {
-        public static ILexerBuilder<TSource> New<TSource>() where TSource : ILexerNode =>
+        public static ILexerBuilder<TSource> New<TSource>() where TSource : class =>
             new LexerBuilder<TSource>();
     }
 
-    public class LexerBuilder<T> : ILexerBuilder<T> where T : ILexerNode
+    public class LexerBuilder<T> : ILexerBuilder<T> where T : class
     {
         public ILexerBuilderAmbiguityResolver<T> Init()
         {
@@ -21,7 +21,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderAmbiguityResolver<T> : ILexerBuilderAmbiguityResolver<T> where T : ILexerNode
+    public class LexerBuilderAmbiguityResolver<T> : ILexerBuilderAmbiguityResolver<T> where T : class
     {
         public ILexerBuilderWithNilNode<T> WithAmbiguityResolverEnum(AmbiguityResolverEnum ambiguityResolver)
         {
@@ -29,7 +29,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderWithNilNode<T> : ILexerBuilderWithNilNode<T> where T : ILexerNode
+    public class LexerBuilderWithNilNode<T> : ILexerBuilderWithNilNode<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 
@@ -44,7 +44,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderHandlers<T> : ILexerBuilderHandlers<T> where T : ILexerNode
+    public class LexerBuilderHandlers<T> : ILexerBuilderHandlers<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 
@@ -56,7 +56,8 @@ namespace Lexer.core.Builders
         {
             _ambiguityResolver = ambiguityResolver;
             
-            _nil = nil;
+            _nil
+             = nil;
             
             _handlers = new Dictionary<Regex, Action<ILexerArg<T>>>();
         }
@@ -74,7 +75,7 @@ namespace Lexer.core.Builders
         }
     }
 
-    public class LexerBuilderFinalize<T> : ILexerBuilderFinalize<T> where T : ILexerNode
+    public class LexerBuilderFinalize<T> : ILexerBuilderFinalize<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 

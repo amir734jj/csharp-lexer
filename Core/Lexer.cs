@@ -11,7 +11,7 @@ using Lexer.Core.Interfaces.Lexer;
 
 namespace Lexer.core
 {
-    public class Lexer<T> : ILexer<T> where T : ILexerNode
+    internal class Lexer<T> : ILexer<T> where T : class
     {
         private readonly AmbiguityResolverEnum _ambiguityResolver;
 
@@ -114,18 +114,32 @@ namespace Lexer.core
                                 _ => { }
                             )
                         })
-                        .SelectAndAlso(x => new
+                        .Select(x =>
                         {
-                            x.Factory,
-                            x.Handler,
-                            x.Arg,
-                            Probe = x.Factory.Build()
-                        }, (x, y) => x.Handler.Value(x.Arg))
-                        .SelectAndAlso(x => new
+                            var result = new
+                            {
+                                x.Factory,
+                                x.Handler,
+                                x.Arg,
+                                Probe = x.Factory.Build()
+                            };
+
+                            result.Handler.Value(x.Arg);
+
+                            return result;
+                        })
+                        .Select(x =>
                         {
-                            x.Probe,
-                            x.Handler
-                        }, (x, y) => x.Probe.Trigger())
+                            var result = new
+                            {
+                                x.Probe,
+                                x.Handler
+                            };
+
+                            x.Probe.Trigger();
+
+                            return result;
+                        })
                         .Where(x => x.Probe.Resolved)
                         .OrderBy(x => x.Probe.Value.Length)
                         .LastOrDefault();
